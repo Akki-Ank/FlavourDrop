@@ -1,0 +1,117 @@
+.header {
+  height: 34vw;
+  margin: 30px auto;
+  max-width: calc(100% - 40px);
+  border-radius: 20px;
+  position: relative;
+
+  background: 
+    linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.1)),
+    url("../../assets/header_img.png");   /* or your logo image */
+
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+}
+
+/* subtle overlay for readability */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0)
+  );
+  z-index: 1;
+}
+
+.header-contents {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  max-width: 520px;
+  padding-left: 4vw;      /* safe text start */
+  padding-right: 2vw;
+
+  color: #ffffff;
+}
+
+.header-contents h2 {
+  font-size: 3.2vw;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.header-contents p {
+  font-size: 1.2vw;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.header-contents button {
+  margin-top: 10px;
+  width: fit-content;
+
+  font-size: 1vw;
+  font-weight: 600;
+  color: #333;
+  background-color: #fff;
+
+  padding: 12px 26px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.header-contents button:hover {
+  background-color: #ffb703;
+}
+@media (max-width: 1050px) {
+  .header {
+    height: 40vw;
+    background-size: 150%;
+  }
+  .header-contents h2 {
+    font-size: 6vw;
+  }
+  .header-contents p {
+    font-size: 3.5vw;
+  }
+  .header-contents button {
+    font-size: 3vw;
+    padding: 16px 30px;
+  }
+  
+}
+@media (max-width: 600px) {
+  .header {
+    height: 55vw;
+    background-size: 200%;
+  }
+  .header-contents {
+    max-width: 90%;
+    padding-left: 5vw;
+  }
+  .header-contents h2 {
+    font-size: 8vw;
+  }
+  .header-contents p {
+    font-size: 4.5vw;
+  }
+  .header-contents button {
+    font-size: 4vw;
+    padding: 18px 34px;
+  }
+}

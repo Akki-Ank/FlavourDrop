@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.Navbar {
+  background-color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Navbar .Logo {
+  width: 140px;
+  height: 100px;
+}
+
+.Navbar-menu {
+  display: flex;
+  gap: 28px;
+  color: #382a86;
+  font-size: 18px;
+  list-style: none;
+  font-weight: 1000;
+}
+
+.Navbar-menu a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.Navbar-menu a.active {
+  padding-bottom: 2px;
+  border-bottom: 1px solid black;
+}
+
+.Navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.Navbar .Sign-in {
+  background-color: #8275ce;
+  color: white;
+  border: 1px solid #8275ce;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.Navbar .Sign-in:hover {
+  background-color: white;
+  color: #8275ce;
+  box-shadow: 10px 10px 30px rgba(130, 117, 206, 0.2);
+}
+
+.navbar-search-icon {
+  position: relative;
+}
+
+.navbar-search-icon .dot {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 10px;
+  min-height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+/* PROFILE DROPDOWN */
+.profile-container {
+  position: relative;
+}
+
+.profile-icon {
+  width: 40px;
+  cursor: pointer;
+}
+
+.profile-container {
+  position: relative;
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition: 0.2s;
+}
+
+.profile-container:hover {
+  background-color: #f2f2f2;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  background: white;
+  width: 150px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.profile-dropdown a,
+.profile-dropdown p {
+  display: block;
+  padding: 12px 15px;
+  font-size: 15px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-dropdown a:hover,
+.profile-dropdown p:hover {
+  background-color: #f5f5f5;
+}
+
+.profile-dropdown hr {
+  border: none;
+  border-top: 1px solid #eee;
+}
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  font-size: 12px;
+  color: #555;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1050px) {
+  .Navbar-menu {
+    gap: 20px;
+    font-size: 16px;
+  }
+
+  .Navbar-right {
+    gap: 20px;
+  }
+
+  .Navbar-right img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .Navbar-right button {
+    padding: 7px 15px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 750px) {
+  .Navbar-menu {
+    display: none;
+  }
+}

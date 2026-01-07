@@ -1,0 +1,108 @@
+.order {
+  padding: 30px;
+  width: 100%;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.order h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1e293b;
+}
+
+/* Orders list container */
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Single order card */
+.order-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+}
+
+/* Left section: customer + address */
+.order-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.order-item-left .name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.order-item-left .address {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Middle section: amount */
+.order-item-middle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* Right section: status */
+.order-item-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Status dropdown */
+.order-item-right select {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  background: #f8fafc;
+}
+/* Items list inside order */
+.order-items {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.order-item-name {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 500;
+}
+
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .order-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .order-item-right {
+    justify-content: flex-start;
+  }
+}

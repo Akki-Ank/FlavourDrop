@@ -1,0 +1,90 @@
+.list {
+  padding: 30px;
+  width: 100%;
+}
+
+.list h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #1f2937;
+}
+
+/* Grid layout */
+.list-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Card */
+.list-table-row {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-table-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Image */
+.list-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+/* Name */
+.list-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 6px 0;
+  color: #111827;
+}
+
+/* Category */
+.list-category {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+/* Price */
+.list-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #16a34a;
+  margin-bottom: 10px;
+}
+
+/* Delete button */
+.list-delete-btn {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #ef4444;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.list-delete-btn:hover {
+  background: #dc2626;
+  transform: scale(1.02);
+}
+
+/* Empty & Loading text */
+.list p {
+  color: #6b7280;
+  font-size: 16px;
+}
