@@ -11,7 +11,8 @@ dotenv.config();
 
 // app config
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
+
 
 // middleware (MUST BE BEFORE ROUTES)
 app.use(express.json());
