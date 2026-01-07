@@ -1,8 +1,9 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import orderRoute from "./routes.orderRoute.js"
 import orderRouter from "./routes/orderRoute.js";
-import userRouter from "./routes/UserRoute.js";
+import userRouter from "./routes/userRoute.js";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import dotenv from "dotenv";
