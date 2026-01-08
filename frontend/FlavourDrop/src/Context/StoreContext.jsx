@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import API from "../utils/api";
+
 
 export const StoreContext = createContext(null);
 
@@ -9,7 +11,8 @@ export const StoreContextProvider = ({ children }) => {
 
   // FETCH FOOD FROM BACKEND
   const fetchFood = async () => {
-    const res = await axios.get("http://localhost:4000/api/food/list");
+    const res = await API.get("/api/food/list")
+
     if (res.data.success) {
       setFoodList(res.data.data);
     }

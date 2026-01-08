@@ -43,32 +43,10 @@ const MyOrders = () => {
 
             {/* Order Items */}
             <div className="order-items">
-              {(() => {
-                const itemsToRender = Array.isArray(order.items)
-                  ? order.items
-                  : Object.keys(order.items || {}).map((id) => {
-                      const val = order.items[id];
-                      let quantity = 0,
-                        price = 0,
-                        name = "",
-                        image = "";
-
-                      if (typeof val === "number") {
-                        quantity = val;
-                      } else if (typeof val === "object") {
-                        quantity = val.quantity || val.qty || val.count || 0;
-                        price = val.price || 0;
-                        name = val.name || "";
-                        image = val.image || "";
-                      }
-
-                      return { _id: id, quantity, price, name, image };
-                    });
-
-                return itemsToRender.map((item, idx) => {
+              {order.items.map((item, idx) => {
                 const imageUrl = item.image?.startsWith("http")
                   ? item.image
-                  : `http://localhost:4000/uploads/${item.image}`;
+                  : `${import.meta.env.VITE_API_URL}/uploads/${item.image}`;
 
                 return (
                   <div key={idx} className="order-item">
@@ -81,35 +59,19 @@ const MyOrders = () => {
                     />
 
                     <div>
-                      <p className="item-name">{item.name || "-"}</p>
-                      <p className="item-qty">Qty: {item.quantity ?? "-"}</p>
-                      <p className="item-price">₹{item.price ?? 0}</p>
+                      <p className="item-name">{item.name}</p>
+                      <p className="item-qty">Qty: {item.quantity}</p>
+                      <p className="item-price">₹{item.price}</p>
                     </div>
                   </div>
                 );
-                });
-              })()}
+              })}
             </div>
 
             {/* Order Footer */}
             <div className="order-footer">
               <p>
-                <b>Total Amount:</b> ₹{
-                  order.amount || (
-                        Array.isArray(order.items)
-                          ? order.items.reduce(
-                              (s, it) => s + (Number(it.price) || 0) * (Number(it.quantity) || 0),
-                              0
-                            )
-                          : Object.keys(order.items || {}).reduce((s, id) => {
-                              const val = order.items[id];
-                              if (typeof val === "number") return s + 0;
-                              if (typeof val === "object")
-                                return s + (Number(val.price) || 0) * (Number(val.quantity) || 0);
-                              return s;
-                            }, 0)
-                  )
-                }
+                <b>Total Amount:</b> ₹{order.amount}
               </p>
             </div>
           </div>

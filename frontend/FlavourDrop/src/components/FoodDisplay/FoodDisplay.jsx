@@ -1,24 +1,39 @@
-import React , {useContext} from 'react'
+import React, { useContext } from 'react';
 import "./FoodDisplay.css";
 import { StoreContext } from '../../Context/StoreContext';
 import FoodItem from '../FoodItem/FoodItem';
 
+const FoodDisplay = ({ category }) => {
 
-const FoodDisplay = ({category}) => {
+  const { food_list } = useContext(StoreContext);
 
-        const {food_list}=useContext(StoreContext)
-    return (
+  return (
     <div className='food-display' id='food-display'>
-        <h2>Food Display Component</h2>
-      <div className="food-display-list">
-        {food_list.filter(item => category ==="All" || item.category ===category).map((item) => {
-            return <FoodItem key={item._id} id={item._id} name={item.name} price={item.price} description={item.description} image={item.image} />
-        })}
+      <h2>Food Display Component</h2>
 
-            
+      <div className="food-display-list">
+        {food_list
+          .filter(item => category === "All" || item.category === category)
+          .map((item) => {
+
+            const imageUrl = item.image?.startsWith("http")
+              ? item.image
+              : `${import.meta.env.VITE_API_URL}/uploads/${item.image}`;
+
+            return (
+              <FoodItem
+                key={item._id}
+                id={item._id}
+                name={item.name}
+                price={item.price}
+                description={item.description}
+                image={imageUrl}
+              />
+            );
+          })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FoodDisplay
+export default FoodDisplay;

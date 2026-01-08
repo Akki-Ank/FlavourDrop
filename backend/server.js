@@ -17,13 +17,20 @@ const port = process.env.PORT || 4000;
 
 // middleware (MUST BE BEFORE ROUTES)
 // middleware (MUST BE BEFORE ROUTES)
+// middleware (MUST BE BEFORE ROUTES)
 app.use(express.json());
 
 app.use(cors({
-  origin: true,
+  origin: [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://flavourdrop.netlify.app",
+    "https://flavourdrop-backend.onrender.com"
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
+
 
 
 // serve uploaded images
