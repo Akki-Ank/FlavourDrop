@@ -1,20 +1,33 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 
-// Function to create token
-console.log("JWT:", process.env.JWT_SECRET);
-
+// ================= CREATE TOKEN =================
 const createToken = (id) => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET is not defined in .env");
+  }
+
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 };
 
 // ================= REGISTER =================
 export const registerUser = async (req, res) => {
-  const { name, email, password } = req.body;
-
   try {
+    const { name, email, password } = req.body;
+
+    // Check missing fields
+    if (!name || !email || !password) {
+      return res.json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
     // Check if user already exists
     const exist = await User.findOne({ email });
     if (exist) {
@@ -39,28 +52,39 @@ export const registerUser = async (req, res) => {
 
     // Create user
     const newUser = await User.create({
-      name: name,
-      email: email,
+      name,
+      email,
       password: hashedPassword,
     });
 
     // Create token
     const token = createToken(newUser._id);
 
-    res.json({ success: true, token });
+    res.json({
+      success: true,
+      token,
+      message: "Account created successfully",
+    });
 
-  }  catch (error) {
-  console.log("AUTH ERROR:", error);
-  res.status(500).json({ success: false, message: error.message });
-}
-}
-
+  } catch (error) {
+    console.log("REGISTER ERROR:", error.message);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 // ================= LOGIN =================
 export const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-
   try {
+    const { email, password } = req.body;
+
+    // Check missing fields
+    if (!email || !password) {
+      return res.json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
     // Check user exists
     const user = await User.findOne({ email });
     if (!user) {
@@ -76,10 +100,14 @@ export const loginUser = async (req, res) => {
     // Create token
     const token = createToken(user._id);
 
-    res.json({ success: true, token });
+    res.json({
+      success: true,
+      token,
+      message: "Login successful",
+    });
 
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Server Error" });
+    console.log("LOGIN ERROR:", error.message);
+    res.status(500).json({ success: false, message: error.message });
   }
 };

@@ -1,23 +1,30 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import orderRoute from "./routes.orderRoute.js"
-import orderRouter from "./routes/orderRoute.js";
-import userRouter from "./routes/userRoute.js";
+import orderRouter from "./routes/OrderRoute.js";
+import userRouter from "./routes/UserRoute.js";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log("JWT FROM SERVER:", process.env.JWT_SECRET);
+
 
 // app config
 const app = express();
 const port = process.env.PORT || 4000;
 
-
+// middleware (MUST BE BEFORE ROUTES)
 // middleware (MUST BE BEFORE ROUTES)
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true
+}));
+
 
 // serve uploaded images
 const uploadsPath = path.resolve("uploads");
